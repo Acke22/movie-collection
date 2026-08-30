@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Collection</title>
+</head>
+<body>
+
+    <h1>Movie Collection</h1>
+
+    <p>Welcome to my movie collection application.</p>
+
+    <a href="/movies/add">Add New Movie</a>
+
+    <hr>
+
+    <h2>Movies</h2>
+
+    <% if (movies.length === 0) { %>
+
+        <p>No movies in the collection.</p>
+
+    <% } else { %>
+
+        <ul>
+            <% movies.forEach(movie => { %>
+                <li>
+                    <strong><%= movie.title %></strong>
+                    - <%= movie.director %>
+                    (<%= movie.year %>)
+                    - <%= movie.genre %>
+                </li>
+            <% }); %>
+        </ul>
+
+    <% } %>
+
+</body>
+</html>
