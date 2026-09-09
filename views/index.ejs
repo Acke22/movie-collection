@@ -30,6 +30,12 @@
                     - <%= movie.director %>
                     (<%= movie.release_year %>)
                     - <%= movie.genre %>
+
+                    <a href="/movies/edit/<%= movie.id %>">Edit</a>
+
+                    <form action="/movies/delete/<%= movie.id %>" method="POST" style="display: inline;">
+                        <button type="submit">Delete</button>
+                    </form>
                 </li>
             <% }); %>
         </ul>

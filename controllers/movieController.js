@@ -37,8 +37,61 @@ const addMovie = (req, res) => {
     });
 };
 
+// Prikazuje formu za izmenu filma
+const showEditForm = (req, res) => {
+    const id = req.params.id;
+
+    movieModel.getMovieById(id, (err, movie) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Error loading movie.');
+        }
+
+        res.render('editMovie', { movie });
+    });
+};
+
+// Cuva izmene filma
+const updateMovie = (req, res) => {
+    const id = req.params.id;
+
+    const updatedMovie = {
+        title: req.body.title,
+        director: req.body.director,
+        release_year: req.body.year,
+        genre: req.body.genre,
+        rating: null
+    };
+
+    movieModel.updateMovie(id, updatedMovie, (err) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Error updating movie.');
+        }
+
+        res.redirect('/');
+    });
+};
+
+// Brise film
+const deleteMovie = (req, res) => {
+    const id = req.params.id;
+
+    movieModel.deleteMovie(id, (err) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Error deleting movie.');
+        }
+
+        res.redirect('/');
+    });
+};
+
 module.exports = {
     getMovies,
     showAddForm,
-    addMovie
+    addMovie,
+    showEditForm,
+    updateMovie,
+    deleteMovie
 };
