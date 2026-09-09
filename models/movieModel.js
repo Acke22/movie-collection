@@ -96,11 +96,24 @@ const searchMoviesByTitle = (title, callback) => {
     });
 };
 
+const filterMoviesByGenre = (genre, callback) => {
+    const sql = 'SELECT * FROM movies WHERE genre = ? ORDER BY id DESC';
+
+    db.query(sql, [genre], (err, results) => {
+        if (err) {
+            return callback(err, null);
+        }
+
+        callback(null, results);
+    });
+};
+
 module.exports = {
     getAllMovies,
     getMovieById,
     addMovie,
     updateMovie,
     deleteMovie,
-    searchMoviesByTitle
+    searchMoviesByTitle,
+    filterMoviesByGenre
 };

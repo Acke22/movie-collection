@@ -100,6 +100,19 @@ const searchMovies = (req, res) => {
     });
 };
 
+const filterMovies = (req, res) => {
+    const genre = req.query.genre;
+
+    movieModel.filterMoviesByGenre(genre, (err, movies) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Error filtering movies.');
+        }
+
+        res.render('index', { movies });
+    });
+};
+
 module.exports = {
     getMovies,
     showAddForm,
@@ -107,5 +120,6 @@ module.exports = {
     showEditForm,
     updateMovie,
     deleteMovie,
-    searchMovies
+    searchMovies,
+    filterMovies
 };

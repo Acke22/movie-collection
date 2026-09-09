@@ -9,6 +9,9 @@ router.get('/', movieController.getMovies);
 // Pretraga filmova po naslovu
 router.get('/movies/search', movieController.searchMovies);
 
+// Filtriranje filmova po zanru
+router.get('/movies/filter', movieController.filterMovies);
+
 // Forma za dodavanje novog filma
 router.get('/movies/add', movieController.showAddForm);
 
