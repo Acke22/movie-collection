@@ -24,7 +24,7 @@ const addMovie = (req, res) => {
         director: req.body.director,
         release_year: req.body.year,
         genre: req.body.genre,
-        rating: null
+        rating: req.body.rating || null
     };
 
     movieModel.addMovie(newMovie, (err) => {
@@ -60,7 +60,7 @@ const updateMovie = (req, res) => {
         director: req.body.director,
         release_year: req.body.year,
         genre: req.body.genre,
-        rating: null
+        rating: req.body.rating || null
     };
 
     movieModel.updateMovie(id, updatedMovie, (err) => {

@@ -30,6 +30,7 @@
                     - <%= movie.director %>
                     (<%= movie.release_year %>)
                     - <%= movie.genre %>
+                    - Rating: <%= movie.rating !== null ? movie.rating : 'Not rated' %>/10
 
                     <a href="/movies/edit/<%= movie.id %>">Edit</a>
 
