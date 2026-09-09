@@ -84,10 +84,23 @@ const deleteMovie = (id, callback) => {
     });
 };
 
+const searchMoviesByTitle = (title, callback) => {
+    const sql = 'SELECT * FROM movies WHERE title LIKE ? ORDER BY id DESC';
+
+    db.query(sql, [`%${title}%`], (err, results) => {
+        if (err) {
+            return callback(err, null);
+        }
+
+        callback(null, results);
+    });
+};
+
 module.exports = {
     getAllMovies,
     getMovieById,
     addMovie,
     updateMovie,
-    deleteMovie
+    deleteMovie,
+    searchMoviesByTitle
 };

@@ -6,6 +6,9 @@ const movieController = require('../controllers/movieController');
 // Prikaz svih filmova
 router.get('/', movieController.getMovies);
 
+// Pretraga filmova po naslovu
+router.get('/movies/search', movieController.searchMovies);
+
 // Forma za dodavanje novog filma
 router.get('/movies/add', movieController.showAddForm);
 

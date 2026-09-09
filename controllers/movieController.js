@@ -87,11 +87,25 @@ const deleteMovie = (req, res) => {
     });
 };
 
+const searchMovies = (req, res) => {
+    const title = req.query.title;
+
+    movieModel.searchMoviesByTitle(title, (err, movies) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Error searching movies.');
+        }
+
+        res.render('index', { movies });
+    });
+};
+
 module.exports = {
     getMovies,
     showAddForm,
     addMovie,
     showEditForm,
     updateMovie,
-    deleteMovie
+    deleteMovie,
+    searchMovies
 };
